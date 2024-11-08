@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-db:5432/employees  # Ссылка на контейнер с PostgreSQL
+    username: user  # Имя пользователя для подключения
+    password: password  # Пароль для подключения
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10  # Максимальное количество подключений в пуле
+
+  jpa:
+    hibernate:
+      ddl-auto: update  # Автоматическое обновление схемы базы данных при старте приложения
+    show-sql: true  # Включить вывод SQL-запросов в консоль
+    properties:
+      hibernate:
+        format_sql: true  # Форматировать SQL-запросы для удобства чтения
+
+  liquibase:
+    change-log: classpath:db/changelogs/db.changelog-master.yml  # Путь к файлу миграций Liquibase
+    contexts: dev  # Указываем, что это для контекста dev
+
+  server:
+    port: 8080  # Порт для приложения
+    servlet:
+      context-path: /api  # Базовый путь для API, если нужно
