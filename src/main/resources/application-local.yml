@@ -7,11 +7,18 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+      show-sql: true
+      dialect: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
         format_sql: true
   liquibase:
-    change-log: classpath:db/changelogs/db.changelog-master.yml
+    change-log: classpath:db/db_changelog-master.yml
   servlet:
     context-path: /api
+springdoc:
+  api-docs:
+    path: /v3/api-docs  # Путь для API-документации
+  swagger-ui:
+    path: /swagger-ui.html  # Путь для Swagger UI
+    operationsSorter: alpha  # Сортировка операций по алфавиту

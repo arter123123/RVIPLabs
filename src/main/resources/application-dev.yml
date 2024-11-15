@@ -10,16 +10,24 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update  # Автоматическое обновление схемы базы данных при старте приложения
-    show-sql: true  # Включить вывод SQL-запросов в консоль
+      show-sql: true  # Включить вывод SQL-запросов в консоль
+      dialect: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
         format_sql: true  # Форматировать SQL-запросы для удобства чтения
 
   liquibase:
-    change-log: classpath:db/changelogs/db.changelog-master.yml  # Путь к файлу миграций Liquibase
+    change-log: classpath:db/db_changelog-master.yml  # Путь к файлу миграций Liquibase
     contexts: dev  # Указываем, что это для контекста dev
 
   server:
-    port: 8080  # Порт для приложения
+    port: 8080  # Порт приложения
     servlet:
-      context-path: /api  # Базовый путь для API, если нужно
+      context-path: /api  # Базовый путь для API
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs  # Путь для API-документации
+  swagger-ui:
+    path: /swagger-ui.html  # Путь для Swagger UI
+    operationsSorter: alpha  # Сортировка операций по алфавиту
